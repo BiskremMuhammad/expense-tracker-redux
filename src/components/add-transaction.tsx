@@ -1,4 +1,4 @@
-import React, { Dispatch, useState } from "react";
+import React, { Dispatch, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { v4 as uuid } from "uuid";
 
@@ -8,6 +8,7 @@ import { Expense } from "../types/types";
 export const AddTransaction = () => {
   const [desc, setDesc] = useState<string>("");
   const [amount, setAmount] = useState<string>("");
+  const rerenders = useRef(0);
 
   const dispatch = useDispatch<Dispatch<Actions>>();
 
@@ -36,6 +37,8 @@ export const AddTransaction = () => {
     setDesc("");
     setAmount("");
   };
+
+  console.log("add-transaction component re-renders: ", rerenders.current++);
 
   return (
     <>
