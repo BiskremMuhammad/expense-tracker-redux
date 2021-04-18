@@ -1,6 +1,8 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import createSagaMiddleWare from "redux-saga";
 import { ExpenseStore } from "../types/types";
 import { expensesReducer } from "./expenese-reducer";
+import { sagaWatcher } from "./sagas";
 
 /**
  * interface that defines the glabal store
@@ -18,8 +20,15 @@ export interface GlobalStore {
   expenses: ExpenseStore;
 }
 
+const sagaWorker = createSagaMiddleWare();
+
 const reducers = combineReducers({
   expenses: expensesReducer,
 });
 
-export const store = createStore<GlobalStore, any, any, any>(reducers);
+export const store = createStore<GlobalStore, any, any, any>(
+  reducers,
+  applyMiddleware(sagaWorker)
+);
+
+sagaWorker.run(sagaWatcher);

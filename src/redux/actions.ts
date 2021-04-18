@@ -7,7 +7,9 @@ import { Expense } from "../types/types";
  * @exports
  */
 export enum ActionTypes {
+  SEND_NEW_EXPENSE_DATA = "SEND_NEW_EXPENSE_DATA",
   ADD_EXPENSE = "ADD_EXPENSE",
+  SAVE_NEW_EXPENSE_FAILED = "SAVE_NEW_EXPENSE_FAILED",
   DELETE_EXPENSE = "DELETE_EXPENSE",
 }
 

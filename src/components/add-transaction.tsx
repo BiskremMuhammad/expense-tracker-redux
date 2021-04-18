@@ -29,7 +29,7 @@ export const AddTransaction = () => {
 
     // dispath a new action to add this transaction
     dispatch({
-      type: ActionTypes.ADD_EXPENSE,
+      type: ActionTypes.SEND_NEW_EXPENSE_DATA,
       payload: newExpense,
     });
 
